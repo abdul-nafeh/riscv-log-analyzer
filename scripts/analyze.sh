@@ -38,7 +38,7 @@ declare -a execution_times
 usage() {
     echo "Usage: ./analyze.sh <log_file> [options]"
     echo
-    echo "Options:"
+    echo "Options::::"
     echo "  --format [text|csv]   Output format (default: text)"
     echo "  --output <path>       Save output to file"
     echo "  --verbose             Enable verbose mode"
