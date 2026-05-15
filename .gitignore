@@ -1,0 +1,19 @@
+# Build artifacts
+build/
+bin/
+*.o
+*.d
+
+# Simulation outputs (Waveforms and Logs)
+*.vcd
+*.fsdb
+*.vpd
+simv
+simv.daidir/
+csrc/
+*.log
+
+# Editor and OS files
+.vscode/
+*.swp
+.DS_Store
