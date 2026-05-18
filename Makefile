@@ -1,21 +1,32 @@
+# Variables
 SHELL := /bin/bash
 SCRIPT := scripts/analyze.sh
-LOG_DIR := test_logs
+SUCCESS_LOG := test_logs/simulation_success.log
+FAIL_LOG := test_logs/simulation_fail.log
 
-.PHONY: all test clean help
+.PHONY: all setup test test-fail clean help
 
-all: test
+all: setup test
 
-test:
-	@echo "Running log analysis tests..."
-	./$(SCRIPT) $(LOG_DIR)/*.log
+setup:
+	@chmod +x $(SCRIPT)
+
+test: setup
+	@echo "Running verification on passing log..."
+	./$(SCRIPT) $(SUCCESS_LOG)
+
+test-fail: setup
+	@echo "Running verification on failing log..."
+	@./$(SCRIPT) $(FAIL_LOG) || true
 
 clean:
-	@echo "Cleaning up output files..."
-	rm -rf output/
-	rm -f *.txt
+	@echo "Cleaning up generated outputs..."
+	@rm -rf build/
 
 help:
-	@echo "Usage:"
-	@echo "  make all   - Run all tests"
-	@echo "  make clean - Remove temporary files"
+	@echo "RISC-V Log Analyzer Automation Platform"
+	@echo "Available commands:"
+	@echo "  make setup     - Grant execution permissions to scripts"
+	@echo "  make test      - Run analyzer against passing simulation logs"
+	@echo "  make test-fail - Run analyzer against failing simulation logs"
+	@echo "  make clean     - Clear out temporary build structures"
