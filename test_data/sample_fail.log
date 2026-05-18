@@ -1,0 +1,3 @@
+Checking load/store units...
+Error: Misaligned memory access at 0x0000FFF0
+Status: FAILED
